@@ -32,6 +32,9 @@
           </nav>
         </div>
       </section>
+
+      <!-- alerts -->
+      {% include 'partials/_alerts.html' %}
     
       <!-- Listing -->
       <section id="listing" class="py-4">
@@ -170,15 +173,15 @@
               <form action="{% url 'contact' %}" method="POST">
                 {% csrf_token %}
                 {% if user.is_authenticated %}
-                  <input type="hidden" name="user_id" value="{{ user.id}}">
+                  <input type="hidden" name="user_id" value="{{ user.id }}">
                 {% else %}
                   <input type="hidden" name="user_id" value="0">
                 {% endif %}
-                <input type="hidden" name="realtor_email" value=" listing.realtor.email ">
-                <input type="hidden" name="listing_id" value=" listing.id ">
+                <input type="hidden" name="realtor_email" value=" {{listing.realtor.email }}">
+                <input type="hidden" name="listing_id" value=" {{ listing.id }} ">
                 <div class="form-group">
                   <label for="property_name" class="col-form-label">Property:</label>
-                  <input type="text" name="listing" class="form-control" value="{{ listing.title }}" disabled>
+                  <input type="text" name="listing" class="form-control" value="{{ listing.title }}">
                 </div>
                 <div class="form-group">
                   <label for="name" class="col-form-label">Name:</label>
